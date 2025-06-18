@@ -23,3 +23,42 @@ async function connectDB() {
     process.exit(1) // Exit the process with failure
   }
 }
+
+//Seed or delete data
+async function runSeeder(deleteFlag, title) {
+  await connectDB()
+
+  if (deleteFlag) {
+    if (title) {
+      //Deletes one item
+      const result = await AuctionItem.deleteOne({ title })
+      console.log(
+        result.deletedCount
+          ? `Deleted item with title: ${title}`
+          : `No item found with title: ${title}`
+      )
+    } else {
+      //Deletes all items
+      await AuctionItem.deleteMany({})
+      console.log('All auction items deleted')
+    }
+  } else {
+    if (title) {
+      //Seed one item
+      const item = auctionData.find((item) => item.title === title)
+      if (item) {
+        await AuctionItem.create(item)
+        console.log(`Seeded item: ${title}`)
+      } else {
+        console.log(`No item found with title: ${title}`)
+      }
+    } else {
+      //Seed all
+      await AuctionItem.insertMany(auctionData)
+      console.log('All auction items seeded')
+    }
+  }
+  mongoose.connection.close()
+}
+
+//CLI handler
