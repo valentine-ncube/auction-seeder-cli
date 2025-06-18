@@ -15,5 +15,5 @@ This is a simple Node.js CLI tool for seeding and deleting sample auction data i
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/auction-seeder-cli.git
+git clone https://github.com/valentine-ncube/auction-seeder-cli.git
 cd auction-seeder-cli
