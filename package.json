@@ -1,0 +1,25 @@
+{
+  "name": "auction-seeder-cli",
+  "version": "1.0.0",
+  "description": "This is a simple Node.js CLI tool for seeding and deleting sample auction data in a local MongoDB database. It's designed to support TradeMe-style listings for development and testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentine-ncube/auction-seeder-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valentine-ncube/auction-seeder-cli/issues"
+  },
+  "homepage": "https://github.com/valentine-ncube/auction-seeder-cli#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "mongoose": "^8.16.0",
+    "yargs": "^18.0.0"
+  }
+}
