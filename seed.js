@@ -62,3 +62,18 @@ async function runSeeder(deleteFlag, title) {
 }
 
 //CLI handler
+const argv = yargs
+  .option('delete', {
+    alias: 'd',
+    description: 'Delete data instead of seeding',
+    type: 'boolean',
+  })
+  .option('title', {
+    alias: 't',
+    description: 'Specify title of the auction item',
+    type: 'string',
+  })
+  .help() // Show help message
+  .alias('help', 'h').argv // Parse command line arguments
+
+runSeeder(argv.delete, argv.title)
