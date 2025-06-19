@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'iphone 16 pro',
+    title: 'iPhone 16 pro',
     description: 'Latest model, slightly used, 128GB',
     start_price: 1000,
     reserve_price: 1200,

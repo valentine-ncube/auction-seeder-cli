@@ -1,11 +1,13 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
+const auctionData = require('./auctionData')
+
 const yargs = require('yargs')
-const auctionData = require('./auction-data.json')
+const { hideBin } = require('yargs/helpers')
 
 //Define auction schema
 const auctionSchema = new mongoose.Schema({
-  tittle: String,
+  title: String,
   description: String,
   start_price: Number,
   reserve_price: Number,
@@ -30,8 +32,17 @@ async function runSeeder(deleteFlag, title) {
 
   if (deleteFlag) {
     if (title) {
-      //Deletes one item
-      const result = await AuctionItem.deleteOne({ title })
+      //DEBUG: Log current title in DB
+      const items = await AuctionItem.find({})
+      console.log(
+        'Current items in DB:',
+        items.map((i) => i.title)
+      )
+
+      //Deletes one item (case-insensitive)
+      const result = await AuctionItem.deleteOne({
+        title: new RegExp(`^${title}$`, 'i'),
+      })
       console.log(
         result.deletedCount
           ? `Deleted item with title: ${title}`
@@ -62,7 +73,7 @@ async function runSeeder(deleteFlag, title) {
 }
 
 //CLI handler
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .option('delete', {
     alias: 'd',
     description: 'Delete data instead of seeding',
