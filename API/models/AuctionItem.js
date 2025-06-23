@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const auctionItemSchema = new mongoose.Schema({
+const auctionSchema = new mongoose.Schema({
   title: String,
   description: String,
   start_price: Number,
